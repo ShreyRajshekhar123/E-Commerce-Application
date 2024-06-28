@@ -1,0 +1,54 @@
+<% layout('/boilerplate/boilerplate.ejs') -%>
+
+<%- include('../partials/flash.ejs') %>
+
+<h1 class="display-4">Cart</h1>
+<div class="row">
+    <div class="col-lg-8">
+        <% for( let item of cart ) { %>
+            <div class="card mb-3" style="min-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 border border-5">
+                    <img style="height: 100%; width: 100%;" src="<%= item.product.img %>" class="border border-3 img-fluid rounded-start object-fit-cover" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title d-flex justify-content-between align-items-center">
+                        <span><%= item.product.name %></span>
+                        <form action="/user/cart/<%= item.product._id %>?_method=DELETE" method="post">
+                            <button class="btn btn-sm"><i class="fa-solid fa-x"></i></button>
+                        </form>
+                      </h5>
+                      <p class="card-text"><%= item.product.desc %></p>
+                      <p class="card-text">₹ <%= item.product.price %></p>
+                      <div>
+                        <form class="d-inline" action="/user/cart/<%= item.product._id %>/remove" method="post">
+                            <button class="btn btn-sm btn-primary">-</button>
+                        </form>
+                        <span><%= item.quantity %></span>
+                        <form class="d-inline" action="/user/cart/<%= item.product._id %>/add" method="post">
+                            <button class="btn btn-sm btn-primary">+</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <% } %>
+    </div>
+
+    <div class="col-lg-4">
+        <ul class="list-group">
+            <% for( let item of cart ) { %>
+                <li class="list-group-item">
+                    <b><%= item.product.name %></b> - 
+                    <%= item.product.price %> x <%= item.quantity %>
+                
+                </li>
+            <% } %>
+            <li class="list-group-item"><b>Total Price - ₹ <%= totalPrice %></b></li>
+        </ul>
+
+        <button class="my-3 btn btn-sm btn-success">Checkout</button>
+    </div>
+</div>

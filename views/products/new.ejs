@@ -1,0 +1,24 @@
+<% layout('/boilerplate/boilerplate.ejs') -%>
+
+    <div class="container mb-3">
+        <form class="needs-validation" action="/products" method="post" novalidate>
+            <div class="mb-3">
+              <label for="product-name-inp" class="form-label">Product Name</label>
+              <input required name="name" placeholder="Enter product name" type="text" class="form-control" id="product-name-inp" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="product-img-inp" class="form-label">Image URL</label>
+              <input required name="img" placeholder="Enter image URL" type="text" class="form-control" id="product-img-inp" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="product-price-inp" class="form-label">Price</label>
+              <input required name="price" placeholder="Enter product price" type="number" class="form-control" id="product-price-inp" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="product-desc-inp" class="form-label">Description</label>
+              <textarea required name="desc" class="form-control" placeholder="Enter product description" id="product-desc-inp" cols="30" rows="5"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+          </form>
+    </div>
